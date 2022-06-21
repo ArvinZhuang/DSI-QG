@@ -60,6 +60,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
 #### Step 1:
 Our DSI-QG model requires a query generation model to generate potentially-relevant queries to
 represent each candidate documents.
+> Note, if you plan to run DSI-QG experiments on MS MARCO dataset, you can skip this step and directly use off-the-shelf [docTquery-t5](https://github.com/castorini/docTTTTTquery) model with huggingface model name `castorini/doc2query-t5-large-msmarco` for query generation in step 2.
 
 ```
 python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
@@ -91,7 +92,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
 
 #### Step 2:
 We then run the query generation for all the documents in the corpus: 
-> Note: set the `--model_path` to the best checkpoints.
+> Note: set the `--model_path` to the best checkpoints. Remove `--model_path` argument and set `--model_name castorini/doc2query-t5-large-msmarco` for MS MARCO dataset.
 
 ```
 python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
@@ -106,8 +107,9 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
         --dataloader_num_workers 10 \
         --report_to wandb \
         --logging_steps 100 \
-        --num_return_sequences 1
+        --num_return_sequences 10
 ```
+the `--num_return_sequences` is the argument for how many queries per langurage to generate for representing each candidate document. In this example, we use 10 generated queries each language per document.
 
 #### Step 3:
 
@@ -119,7 +121,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
         --model_name "google/mt5-base" \
         --run_name "XORQA-100k-mt5-base-DSI-QG" \
         --max_length 32 \
-        --train_file data/xorqa_data/100k/xorqa_corpus.tsv.docTquery \
+        --train_file data/xorqa_data/100k/xorqa_corpus.tsv.q10.docTquery \
         --valid_file data/xorqa_data/100k/xorqa_DSI_dev_data.json \
         --output_dir "models/XORQA-100k-mt5-base-DSI-QG" \
         --learning_rate 0.0005 \
