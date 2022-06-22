@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from tqdm import tqdm
 import datasets
 from torch.utils.data import Dataset
 from transformers import PreTrainedTokenizer, DataCollatorWithPadding
@@ -26,7 +26,7 @@ class IndexingTrainDataset(Dataset):
         self.remove_prompt = remove_prompt
         self.total_len = len(self.train_data)
         self.valid_ids = set()
-        for data in self.train_data:
+        for data in tqdm(self.train_data):
             self.valid_ids.add(str(data['text_id']))
 
     def __len__(self):
