@@ -19,7 +19,7 @@ The script will automatically download and create training and evaluation datase
 ## Training
 We take XORQA 100k and t5/mt5-base as a training example. You can simply change the dataset and model config in the run arguments to run other experiments.
 
-The retrieval Hits score results on dev set will be logger on wandb logger during training.
+The retrieval Hits score results on dev set will be logged on wandb logger during training.
 
 ### Train Original DSI model
 
