@@ -1,5 +1,5 @@
 # DSI-QG
-The official repository for "Bridging the Gap Between Indexing and Retrieval for Differentiable Search Index with Query Generation",
+The official repository for [Bridging the Gap Between Indexing and Retrieval for Differentiable Search Index with Query Generation](https://arxiv.org/pdf/2206.10128.pdf),
 Shengyao Zhuang, Houxing Ren, Linjun Shou, Jian Pei, Ming Gong, Guido Zuccon and Daxin Jiang.
 
 
