@@ -23,7 +23,7 @@ The retrieval Hits score results on dev set will be logged on wandb logger durin
 
 ### Train Original DSI model
 
-Recall that the original DSI model directly take document text as input during indexing.
+Recall that the original DSI model directly take document text as input during indexing. Run the following command to train a DSI model with the original document corpus.
 
 ```
 python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
@@ -59,7 +59,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
 ### Train DSI-QG model
 #### Step 1:
 Our DSI-QG model requires a query generation model to generate potentially-relevant queries to
-represent each candidate documents.
+represent each candidate documents. Run the following command to train a mT5-large cross-lingual query generation model.
 > Note, if you plan to run DSI-QG experiments on MS MARCO dataset, you can skip this step and directly use off-the-shelf [docTquery-t5](https://github.com/castorini/docTTTTTquery) model with huggingface model name `castorini/doc2query-t5-large-msmarco` for query generation in step 2.
 
 ```
