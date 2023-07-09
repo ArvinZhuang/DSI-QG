@@ -89,6 +89,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 run.py \
         --dataloader_drop_last False
 
 ```
+If you do not want to train the QG model yourself, we also provide our trained QG models on [huggingface](https://huggingface.co/ielabgroup/xor-tydi-docTquery-mt5-large).
 
 #### Step 2:
 We then run the query generation for all the documents in the corpus: 
