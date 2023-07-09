@@ -60,7 +60,7 @@ with open('xorqa_data/gp_squad_train_data.json', 'r') as tf, \
 
         if qid not in qid_set:  # remove duplicates
             docTquery_train_data.append({"text_id": question,
-                                         "text": f"Generate {lang2mT5[lang]} question: {title}</s>{passage}"})
+                                         "text": f"Generate a {lang2mT5[lang]} question for this passage: {title} {passage}"})
 
             if current_ind < NUM_TRAIN:
                 DSI_train_data.append({'text_id': rand_inds[current_ind],
