@@ -68,7 +68,7 @@ class GenerateDataset(Dataset):
                 if 'xorqa' in path_to_data:
                     docid, passage, title = data.split('\t')
                     for lang in self.lang2mT5.values():
-                        self.data.append((docid, f'Generate {lang} question: {title}</s>{passage}'))
+                        self.data.append((docid, f'Generate a {lang} question for this passage: {title} {passage}'))
                 elif 'msmarco' in path_to_data:
                     docid, passage = data.split('\t')
                     self.data.append((docid, f'{passage}'))
